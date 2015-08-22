@@ -1,11 +1,6 @@
 import domUtils from "DEGJS/domUtils";
 import eventAggregator from "DEGJS/eventAggregator";
 
-// SAMPLE USAGE:
-// eventAggregator.subscribe('breakpointChange', function(e) {
-// 	console.log(e);
-// });
-
 let breakpoints = function() {
 
 	let bodyEl = domUtils.elements.body,
