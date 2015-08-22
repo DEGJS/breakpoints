@@ -7,12 +7,12 @@ let breakpoints = function() {
 		size,
 		newSize;
 
-	function init() {
+	function init(elementSelector) {
 		window.addEventListener('resize', refreshValue);
-		refreshValue();
+		refreshValue(elementSelector);
 	};
 
-	function refreshValue() {
+	function refreshValue(selector = null) {
 		newSize = window.getComputedStyle(bodyEl, ':before').getPropertyValue('content').replace(/("|')/g, "");
 		if (newSize.length > 0) {
 			if (newSize !== size) {

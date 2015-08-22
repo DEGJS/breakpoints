@@ -9,3 +9,7 @@ eventAggregator.subscribe('breakpointChange', function(e) {
 	console.log(e);
 });
 ```
+
+## Revision History:
+
+* **1.0.0:** First commit.
