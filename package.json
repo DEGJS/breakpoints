@@ -1,0 +1,10 @@
+{
+	"name": "breakpoints",
+	"jspm": {
+		"dep": [
+			"github:DEGJS/domUtils@master",
+			"github:DEGJS/eventAggregator@master"
+		],
+		"format": "es6"
+	}
+}
