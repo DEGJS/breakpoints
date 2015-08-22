@@ -5,6 +5,7 @@
 			"github:DEGJS/domUtils@master",
 			"github:DEGJS/eventAggregator@master"
 		],
-		"format": "es6"
+		"format": "es6",
+  		"registry": "jspm"
 	}
 }
