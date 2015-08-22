@@ -1,5 +1,5 @@
-import domUtils from "DEGJS/domUtils";
-import eventAggregator from "DEGJS/eventAggregator";
+import domUtils from "domUtils";
+import eventAggregator from "eventAggregator";
 
 let breakpoints = function() {
 
