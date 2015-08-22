@@ -1,5 +1,5 @@
-import domUtils from "plugins/domUtils";
-import eventAggregator from "plugins/eventAggregator";
+import domUtils from "DEGJS/domUtils";
+import eventAggregator from "DEGJS/eventAggregator";
 
 // SAMPLE USAGE:
 // eventAggregator.subscribe('breakpointChange', function(e) {
