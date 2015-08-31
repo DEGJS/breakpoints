@@ -1,29 +1,63 @@
 import domUtils from "domUtils";
 import eventAggregator from "eventAggregator";
 
-let breakpoints = function() {
+let breakpoints = function(options) {
 
-	let bodyEl = domUtils.elements.body,
+	const NO_STYLES_MESSAGE = 'No stylesheet found for the selected element. See documentation.',
+		  ALREADY_SET_MESSAGE = 'Breakpoints have already been set for the selected element.';
+
+	let settings,
+		element = domUtils.elements.body,
 		size,
-		newSize;
+		newSize,
+		isReady = false,
+		defaults = {
+			'elementSelector': null,
+			'initedClass': 'breakpoint-is-inited',
+			'onReady': null
+		};
 
-	function init(elementSelector) {
-		window.addEventListener('resize', refreshValue);
-		refreshValue(elementSelector);
+	function init() {
+		settings = extend(this, defaults, options);
+		if (settings.elementSelector !== null) {
+			element = document.querySelector(settings.elementSelector);
+		}
+		bindEvents();
 	};
 
-	function refreshValue(selector = null) {
-		newSize = window.getComputedStyle(bodyEl, ':before').getPropertyValue('content').replace(/("|')/g, "");
-		if (newSize.length > 0) {
+	function bindEvents() {
+		if (!element.classList.contains(settings.initedClass)) {
+			window.addEventListener('resize', refreshValue);
+			refreshValue();
+		} else {
+			console.log(ALREADY_SET_MESSAGE);
+		}
+		
+	};
+
+	function refreshValue() {
+		newSize = window.getComputedStyle(element, ':before').getPropertyValue('content').replace(/("|')/g, "");
+		if ((newSize.length === 0) || (newSize === 'undefined')) {
+			console.log(NO_STYLES_MESSAGE);
+			window.removeEventListener('resize', refreshValue);
+		} else {
 			if (newSize !== size) {
 				size = newSize;
 				eventAggregator.publish({
 					'type': 'breakpointChange',
-					'size': size
+					'size': size,
+					'element': element
 				});
 			}
-		} else {
-			window.removeEventListener('resize', refreshValue);
+		}
+		element.classList.add(settings.initedClass);
+		if ((settings.onReady !== null) && (!isReady)) {
+			settings.onReady({
+				'type': 'breakpointReady',
+				'size': size,
+				'element': element
+			});
+			isReady = true;
 		}
 	};
 
@@ -31,14 +65,18 @@ let breakpoints = function() {
 		return size;
 	};
 
+	function extend(out) {
+		out = out || {};
+	    for (var i = 1; i < arguments.length; i++) if (arguments[i]) for (var key in arguments[i]) arguments[i].hasOwnProperty(key) && (out[key] = arguments[i][key]);
+	    	return out;
+	};
+
+	init();
+
 	return {
-		init: init,
-		refreshValue: refreshValue,
 		getCurrentSize: getCurrentSize
-	}
+	};
 
 };
 
-var instance = breakpoints();
-
-export default instance;
+export default breakpoints;
