@@ -1,4 +1,3 @@
-import domUtils from "domUtils";
 import eventAggregator from "eventAggregator";
 
 let breakpoints = function(options) {
@@ -7,36 +6,37 @@ let breakpoints = function(options) {
 		  ALREADY_SET_MESSAGE = 'Breakpoints have already been set for the selected element.';
 
 	let settings,
-		element = domUtils.elements.body,
+		element,
 		size,
-		newSize,
-		isReady = false,
 		defaults = {
+			'pseudoElementSelector': ":before",
 			'elementSelector': null,
-			'initedClass': 'breakpoint-is-inited',
-			'onReady': null
+			'initedAttributeName': 'data-breakpoints-inited'
 		};
 
 	function init() {
-		settings = extend(this, defaults, options);
+		settings = Object.assign({}, defaults, options);
 		if (settings.elementSelector !== null) {
 			element = document.querySelector(settings.elementSelector);
+		} else {
+			element = document.body;
 		}
-		bindEvents();
-	};
-
-	function bindEvents() {
-		if (!element.classList.contains(settings.initedClass)) {
-			window.addEventListener('resize', refreshValue);
-			refreshValue();
+		
+		if (element.getAttribute(settings.initedAttributeName) != 'true') {
+			element.setAttribute(settings.initedAttributeName, 'true');
+			bindEvents();
 		} else {
 			console.log(ALREADY_SET_MESSAGE);
 		}
-		
+	};
+
+	function bindEvents() {
+		window.addEventListener('resize', refreshValue);
+		refreshValue();
 	};
 
 	function refreshValue() {
-		newSize = window.getComputedStyle(element, ':before').getPropertyValue('content').replace(/("|')/g, "");
+		let newSize = window.getComputedStyle(element, settings.pseudoElementSelector).getPropertyValue('content').replace(/("|')/g, "");
 		if ((newSize.length === 0) || (newSize === 'undefined')) {
 			console.log(NO_STYLES_MESSAGE);
 			window.removeEventListener('resize', refreshValue);
@@ -50,25 +50,10 @@ let breakpoints = function(options) {
 				});
 			}
 		}
-		element.classList.add(settings.initedClass);
-		if ((settings.onReady !== null) && (!isReady)) {
-			settings.onReady({
-				'type': 'breakpointReady',
-				'size': size,
-				'element': element
-			});
-			isReady = true;
-		}
 	};
 
 	function getCurrentSize() {
 		return size;
-	};
-
-	function extend(out) {
-		out = out || {};
-	    for (var i = 1; i < arguments.length; i++) if (arguments[i]) for (var key in arguments[i]) arguments[i].hasOwnProperty(key) && (out[key] = arguments[i][key]);
-	    	return out;
 	};
 
 	init();

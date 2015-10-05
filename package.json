@@ -1,11 +1,19 @@
 {
 	"name": "breakpoints",
+	"version": "2.0.0",
+	"description": "Trigger CSS-based breakpoint events with JavaScript",
+	"author": "DEG (http://degdigital.com)",
+	"repository": {
+        "type": "git",
+        "url": "https://github.com/DEGJS/breakpoints.git"
+    },
 	"jspm": {
-		"dependencies": {
-			"domUtils": "github:DEGJS/domUtils@master",
-			"eventAggregator": "github:DEGJS/eventAggregator@master"
+		"dependencies": {			
+			"eventAggregator": "github:DEGJS/eventAggregator@^1.0.0"
 		},
 		"format": "es6",
-  		"registry": "jspm"
+  		"registry": "jspm",
+  		"main": "breakpoints",
+  		"files": ["breakpoints.js"]
 	}
 }
