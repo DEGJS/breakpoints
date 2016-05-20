@@ -1,6 +1,6 @@
 {
 	"name": "breakpoints",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "Trigger CSS-based breakpoint events with JavaScript",
 	"author": "DEG (http://degdigital.com)",
 	"repository": {
