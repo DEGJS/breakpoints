@@ -10,13 +10,16 @@ let breakpoints = function(options) {
 		size,
 		defaults = {
 			'pseudoElementSelector': ":before",
+			'element': null,
 			'elementSelector': null,
 			'initedAttributeName': 'data-breakpoints-inited'
 		};
 
 	function init() {
 		settings = Object.assign({}, defaults, options);
-		if (settings.elementSelector !== null) {
+		if(settings.element !== null) {
+			element = settings.element;
+		} else if (settings.elementSelector !== null) {
 			element = document.querySelector(settings.elementSelector);
 		} else {
 			element = document.body;
