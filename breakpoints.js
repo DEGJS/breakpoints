@@ -2,12 +2,12 @@ import eventAggregator from "eventAggregator";
 
 let breakpoints = function(options) {
 
-	const NO_STYLES_MESSAGE = 'No stylesheet found for the selected element. See documentation.',
-		  ALREADY_SET_MESSAGE = 'Breakpoints have already been set for the selected element.';
+	const NO_PSEUDO_CONTENT_MESSAGE = 'No pseudo-element content found. See documentation.',
+		  ALREADY_SET_MESSAGE = 'Breakpoints has already been set for the selected element.';
 
 	let settings,
 		element,
-		size,
+		size = null,
 		defaults = {
 			'pseudoElementSelector': ":before",
 			'element': null,
@@ -39,9 +39,15 @@ let breakpoints = function(options) {
 	};
 
 	function refreshValue() {
-		let newSize = window.getComputedStyle(element, settings.pseudoElementSelector).getPropertyValue('content').replace(/("|')/g, "");
-		if ((newSize.length === 0) || (newSize === 'undefined')) {
-			console.log(NO_STYLES_MESSAGE);
+		let newSize = null;
+		if(window.getComputedStyle) {
+			let contentValue = window.getComputedStyle(element, settings.pseudoElementSelector).getPropertyValue('content');
+			if(typeof contentValue !== 'undefined' && contentValue !== null) {
+				newSize = contentValue.replace(/("|')/g, "");	
+			}		
+		}
+		if (newSize === null || typeof newSize === 'undefined' || newSize.length === 0) {
+			console.log(NO_PSEUDO_CONTENT_MESSAGE);
 			window.removeEventListener('resize', refreshValue);
 		} else {
 			if (newSize !== size) {
