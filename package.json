@@ -1,6 +1,6 @@
 {
     "name": "breakpoints",
-    "version": "2.2.1",
+    "version": "2.2.2",
     "description": "Trigger CSS-based breakpoint events with JavaScript.",
     "keywords": [
     	"breakpoints",
@@ -32,7 +32,7 @@
             "lib": "src"
         },
         "dependencies": {
-            "eventAggregator": "github:DEGJS/eventAggregator@1.0.2"
+            "DEGJS/eventAggregator": "github:DEGJS/eventAggregator@^1.0.2"
         }
     }
 }
