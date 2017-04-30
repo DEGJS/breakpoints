@@ -2,8 +2,9 @@ import eventAggregator from "DEGJS/eventAggregator";
 
 let breakpoints = function(options) {
 
-	const NO_PSEUDO_CONTENT_MESSAGE = 'No pseudo-element content found. See documentation.',
-		  ALREADY_SET_MESSAGE = 'Breakpoints has already been set for the selected element.';
+	const NO_ELEMENT_MESSAGE = 'No breakpoints element found.',
+		NO_PSEUDO_CONTENT_MESSAGE = 'No pseudo-element content found. See documentation.',
+		ALREADY_SET_MESSAGE = 'Breakpoints has already been set for the selected element.';
 
 	let settings,
 		element,
@@ -25,12 +26,15 @@ let breakpoints = function(options) {
 			element = document.body;
 		}
 		
-		if (element.getAttribute(settings.initedAttributeName) != 'true') {
-			element.setAttribute(settings.initedAttributeName, 'true');
-			bindEvents();
-		} else {
-			console.log(ALREADY_SET_MESSAGE);
+		if (element) {
+			if (element.getAttribute(settings.initedAttributeName) != 'true') {
+				element.setAttribute(settings.initedAttributeName, 'true');
+				bindEvents();
+			} else {
+				console.log(ALREADY_SET_MESSAGE);
+			}
 		}
+		
 	};
 
 	function bindEvents() {
