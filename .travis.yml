@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- node
+cache:
+  directories:
+  - node_modules
+deploy:
+  provider: npm
+  email: scheul93@gmail.com
+  api_key:
+    secure: mj3M3U62w63+OQ0GZ+AXTdITfqRszkFkg4RW8lkHpAsbR7iRP6eksTxZ1FtPcBGZF4IXMCexwrdWPvhzhJ4Jxuxt1QcJVnilGkeFV+yBDFgSHZ213+8W0DS0iNoS8nCUwGBO8Thq9Zmnw+oieW9BGDKwfVQ06NNrWFxrJtQJfNSrJzvkPpgqIm+J9mLXdADwElm6uCntnO/9iY26KmLbn7r+y401AnftvFeGo5VMC/zNRXRKzIW5xXtjgxeWnlDINx7Fap+VTiP8FiR/aDhsxvWcVjiDSBhNyczM9oNr18A20C+R9gprvVfKinHOBUnMMnzeGgJhRWaeQFRCiea3nq4WVAL0B8ood81HcoJA6E1Wmi/6vXfLK3fgsbuDThE/U6B0+orVU3id7kzgc6pd8oU++dh+Bza9O5HIE+XfA+16rqeKEFg2aLAPTOkAZnPAg/tnaDshZ5CT33bA4PXt7DuJNUb7o41nOE/skcB8Z4XlbpovdcN7xGTcNv19BKMz2F9YiElGlKTfhj4mJI7EAJTM2mmFXB7cbtZJROcJX0G1w84SS3SVYFTfXIIEd962rPsIX4F4Ivumj4wXeMv6qyW1sybA2GOO92IY9kMqEypIOJKlpkEE7v5Fg13AAuI6J1lPqnTeMuy7uVHho5M/KrB3lWWo0FjpOdXmyVNvj34=
+  on:
+    tags: true
+    branch: master
+    repo: DEGJS/breakpoints
