@@ -1,10 +1,10 @@
 {
-    "name": "breakpoints",
-    "version": "2.2.3",
+    "name": "@degjs/breakpoints",
+    "version": "3.0.0",
     "description": "Trigger CSS-based breakpoint events with JavaScript.",
     "keywords": [
-    	"breakpoints",
-    	"responsive",
+        "breakpoints",
+        "responsive",
         "DEGJS"
     ],
     "author": {
@@ -24,15 +24,32 @@
         "url": "https://github.com/DEGJS/breakpoints.git"
     },
     "bugs": "https://github.com/DEGJS/breakpoints/issues",
-    "jspm": {
-        "registry": "jspm",
-        "format": "es6",
-        "main": "breakpoints.js",
-        "directories": {
-            "lib": "src"
-        },
-        "dependencies": {
-            "DEGJS/eventAggregator": "github:DEGJS/eventAggregator@^1.0.2"
-        }
+    "peerDependencies": {
+        "@degjs/event-aggregator": "^1.0.3"
+    },
+    "files": [
+        "src"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "devDependencies": {
+        "babel-core": "^6.26.3",
+        "babel-env": "^2.4.1",
+        "jest": "^23.6.0"
+    },
+    "jest": {
+        "testPathIgnorePatterns": [
+            "/node_modules/"
+        ],
+        "testURL": "http://localhost"
+    },
+    "babel": {
+        "presets": [
+            "env"
+        ]
+    },
+    "scripts": {
+        "test": "jest"
     }
 }
