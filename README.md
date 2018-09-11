@@ -1,4 +1,6 @@
 # Breakpoints
+[![Build Status](https://travis-ci.org/DEGJS/breakpoints.svg?branch=master)](https://travis-ci.org/DEGJS/breakpoints)
+
 Breakpoints is a Javascript module that triggers a change event when CSS-defined breakpoints are crossed during a browser viewport resize. Changes to the ```content``` style property of a pseudo-element across CSS media queries are used to inform the breakpoints module as to when a breakpoint change event should be fired. 
 
 ## The Problem
