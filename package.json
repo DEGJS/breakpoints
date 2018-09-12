@@ -24,7 +24,7 @@
         "url": "https://github.com/DEGJS/breakpoints.git"
     },
     "bugs": "https://github.com/DEGJS/breakpoints/issues",
-    "peerDependencies": {
+    "dependencies": {
         "@degjs/event-aggregator": "^2.0.0"
     },
     "files": [
