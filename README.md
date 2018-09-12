@@ -1,4 +1,6 @@
 # Breakpoints
+[![Build Status](https://travis-ci.org/DEGJS/breakpoints.svg?branch=master)](https://travis-ci.org/DEGJS/breakpoints)
+
 Breakpoints is a Javascript module that triggers a change event when CSS-defined breakpoints are crossed during a browser viewport resize. Changes to the ```content``` style property of a pseudo-element across CSS media queries are used to inform the breakpoints module as to when a breakpoint change event should be fired. 
 
 ## The Problem
@@ -31,12 +33,11 @@ Every time the `window.resize` event fires, the Breakpoints module reads in the 
 The benefit of the Breakpoints module is that all of your component's breakpoints are defined in your CSS only, ensuring that your Javascript and CSS are always in sync.
 
 ## Install
-Breakpoints is an ES6 module. Consequently, you'll need an ES6 transpiler ([Babel](https://babeljs.io) is a nice one) and a module loader ([SystemJS](https://github.com/systemjs/systemjs) will do the job) as part of your Javascript workflow.
+Breakpoints is an ES6 module. Consequently, you'll need an ES6 transpiler ([Babel](https://babeljs.io) is a nice one).
 
-If you're already using the [JSPM package manager](http://jspm.io) for your project, you can install Breakpoints with the following command:
-
+Install breakpoints with NPM using the command:
 ```
-$ jspm install github:DEGJS/breakpoints
+$ npm install @degjs/breakpoints
 ```
 
 ## Dependencies
@@ -45,8 +46,8 @@ Breakpoints relies on the EventAggregator module to publish the `breakpointChang
 ## Usage
 Sample Javascript:
 ```js
-import breakpoints from "DEGJS/breakpoints";
-import eventAggregator from "DEGJS/eventAggregator";
+import breakpoints from "@degjs/breakpoints";
+import eventAggregator from "@degjs/event-aggregator";
 
 /* Function to handle breakpoint changes */
 function onBreakpointChange(size) {

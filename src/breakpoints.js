@@ -1,4 +1,4 @@
-import eventAggregator from "DEGJS/eventAggregator";
+import eventAggregator from "@degjs/event-aggregator";
 
 let breakpoints = function(options) {
 
