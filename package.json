@@ -1,6 +1,6 @@
 {
     "name": "@degjs/breakpoints",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "description": "Trigger CSS-based breakpoint events with JavaScript.",
     "keywords": [
         "breakpoints",
@@ -27,6 +27,7 @@
     "dependencies": {
         "@degjs/event-aggregator": "^2.0.0"
     },
+    "main": "src/breakpoints.js",
     "files": [
         "src"
     ],
